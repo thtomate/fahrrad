@@ -88,6 +88,13 @@ func main() {
 	// RFC4861 requires the hop limit set to 255, but the default value in golang is 64
 	pc.SetHopLimit(255)
 
+	group := net.ParseIP("ff02::2") // multicast group for routers
+
+	err = pc.JoinGroup(nil, &net.UDPAddr{IP: group})
+	if err != nil {
+		panic(err)
+	}
+
 	// only accept neighbor discovery messages
 	filter := new(ipv6.ICMPFilter)
 	filter.SetAll(true)
