@@ -227,7 +227,7 @@ func handleRS(rs routerSolicitation) bool {
 	// autoconf (assigned prefix) option
 	apopt := &NDOptionPrefix{
 		PrefixLength:      uint8(config["AssignedPrefixLength"]),
-		OnLink:            false,
+		OnLink:            true, // TODO: check
 		AutoConf:          true,
 		ValidLifetime:     uint32(config["DefaultValidLifetime"]),
 		PreferredLifetime: uint32(config["DefaultPreferredLifetime"]),
